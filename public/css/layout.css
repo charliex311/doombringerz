@@ -1,0 +1,21 @@
+.layout-grid {
+    display: grid;
+    grid-template-columns: 1fr minmax(30%, 300px);
+    grid-gap: clamp(20px, 2.25vw, 36px);
+}
+
+@media only screen and (max-width: 1260px) {
+    .layout-grid {
+        grid-template-columns: 100%;
+    }
+}
+
+@media only screen and (max-width: 1799px) {
+    .layout-grid {
+        display: flex;
+        flex-direction: column;
+    }
+    .panel-container {
+        max-width: 100% !important; 
+    }
+} 

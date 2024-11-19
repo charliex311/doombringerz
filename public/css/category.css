@@ -1,0 +1,23 @@
+.category {
+    font-family: var(--ff-inter);
+}
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 8px;
+}
+
+.category-header {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: .16px;
+
+    padding-bottom: 1rem;
+
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+
+    margin-bottom: clamp(24px, 2vw, 32px);
+}
+.category-container {
+    margin-bottom: clamp(32px, 3vw, 48px);
+}
