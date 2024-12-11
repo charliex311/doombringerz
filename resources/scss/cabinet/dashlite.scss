@@ -37,9 +37,7 @@ $rtl: false;
 @import "core/fonts/nunito";
 
 // Included Bootstarp
-@import "extend/bootstrap/variables";
-@import "extend/bootstrap/bootstrap";
-@import "extend/bootstrap/extend";
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
 
 // Include Other Vendors
 @import "vendors/bundle";

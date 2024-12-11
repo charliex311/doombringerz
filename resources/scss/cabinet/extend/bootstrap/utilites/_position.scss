@@ -41,8 +41,8 @@
     }
 }
 .pos-rel {
-    @extend .position-relative;
+    @extend .position-relative !optional;
 }
 .pos-abs {
-    @extend .position-absolute;
+    @extend .position-absolute !optional;
 }

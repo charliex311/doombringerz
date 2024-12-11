@@ -50,7 +50,7 @@
             padding-left: .5rem;
         }
         .tb-tnx-item & {
-            @extend .ellipsis;
+            @extend .ellipsis !optional;
         }
     }
     &-date {

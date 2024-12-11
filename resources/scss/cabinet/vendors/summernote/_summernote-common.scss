@@ -641,11 +641,11 @@ $img-margin-right: 10px;
     }
 
     .note-control-holder {
-      @extend .note-control-handle;
+      @extend .note-control-handle !optional;
     }
 
     .note-control-sizing {
-      @extend .note-control-handle;
+      @extend .note-control-handle !optional;
       background-color: #000;
     }
 

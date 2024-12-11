@@ -8,7 +8,6 @@
         "php": "^7.3|^8.1",
         "ext-json": "*",
         "ext-pdo": "*",
-        "ext-sqlsrv": "*",
         "danog/madelineproto": "^7",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",

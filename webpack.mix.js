@@ -23,9 +23,9 @@ mix.options({
 })
 
 mix.sass('resources/scss/cabinet/dashlite.scss', 'public/assets/css/cabinet.css')
-mix.sass('resources/scss/excellent/main.scss', 'public/css/main.css')
+// mix.sass('resources/scss/excellent/main.scss', 'public/css/main.css')
 mix.js('resources/js/cabinet/scripts.js', 'public/assets/js')
-mix.js('resources/js/excellent/main.js', 'public/js')
+// mix.js('resources/js/excellent/main.js', 'public/js')
 
 
 mix.version()

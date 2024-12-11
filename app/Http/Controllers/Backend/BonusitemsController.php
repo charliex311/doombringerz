@@ -49,7 +49,6 @@ class BonusitemsController extends Controller
             //Else select all MA
             $users = User::get();
             foreach ($users as $user) {
-                dd($user);
                 $this->transferItemWarehouse($user->id, $request->item_id, $request->amount, $request->server_id);
             }
         }

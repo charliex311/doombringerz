@@ -1,53 +1,53 @@
 .align-start{
-    @extend .d-flex;
-    @extend .align-items-start;
+    @extend .d-flex !optional;
+    @extend .align-items-start !optional;
 }
 .align-end{
-    @extend .d-flex;
-    @extend .align-items-end;
+    @extend .d-flex !optional;
+    @extend .align-items-end !optional;
 }
 .align-center{
-    @extend .d-flex;
-    @extend .align-items-center;
+    @extend .d-flex !optional;
+    @extend .align-items-center !optional;
 }
 .justify-start{
-    @extend .d-flex;
-    @extend .justify-content-start;
+    @extend .d-flex !optional;
+    @extend .justify-content-start !optional;
 }
 .justify-end{
-    @extend .d-flex;
-    @extend .justify-content-end;
+    @extend .d-flex !optional;
+    @extend .justify-content-end !optional;
 }
 .justify-center{
-    @extend .d-flex;
-    @extend .justify-content-center;
+    @extend .d-flex !optional;
+    @extend .justify-content-center !optional;
 }
 .justify-between{
-    @extend .d-flex;
-    @extend .justify-content-between;
+    @extend .d-flex !optional;
+    @extend .justify-content-between !optional;
 }
 .justify-around{
-    @extend .d-flex;
-    @extend .justify-content-around;
+    @extend .d-flex !optional;
+    @extend .justify-content-around !optional;
 }
 .between-start{
-    @extend .d-flex;
-    @extend .justify-content-between;
-    @extend .align-items-start;
+    @extend .d-flex !optional;
+    @extend .justify-content-between !optional;
+    @extend .align-items-start !optional;
 }
 .between-center{
-    @extend .d-flex;
-    @extend .justify-content-between;
-    @extend .align-items-center;
+    @extend .d-flex !optional;
+    @extend .justify-content-between !optional;
+    @extend .align-items-center !optional;
 }
 .center{
-    @extend .d-flex;
-    @extend .justify-content-center;
-    @extend .align-items-center;
+    @extend .d-flex !optional;
+    @extend .justify-content-center !optional;
+    @extend .align-items-center !optional;
 }
 .stretch{
-    @extend .d-flex;
-    @extend .align-items-stretch;
+    @extend .d-flex !optional;
+    @extend .align-items-stretch !optional;
 }
 .shrink-0{
     flex-shrink: 0;

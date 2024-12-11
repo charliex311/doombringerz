@@ -2,19 +2,19 @@
 ///        INCLUDED THIRD-PARTY VENDORS         ///
 ///////////////////////////////////////////////////
 
-// Include NioIcon 
+// Include NioIcon
 @import "nioicon/nioicon";
 
-// Include Prettify 
+// Include Prettify
 @import "prettify";
 
-// Include Select2 
+// Include Select2
 @import "select2/core.scss";
 
 // Include Simplebar
 @import "simplebar";
 .simplebar-scroll-content {
-	@extend .simplebar-content-wrapper;
+	@extend .simplebar-content-wrapper !optional;
 }
 
 // Include Slick

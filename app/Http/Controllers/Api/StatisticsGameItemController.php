@@ -35,10 +35,6 @@ class StatisticsGameItemController extends Controller
                 $statistics_game_item->save();
             }
         }
-
-        dd('exit');
-
-
     }
 
     public function getStatisticTest(Request $request)
@@ -47,8 +43,6 @@ class StatisticsGameItemController extends Controller
 
         $item_id = '93629';
         $game_items_amount = GameServer::getItemsAmount($item_id);
-
-        dd($game_items_amount);
 
     }
 

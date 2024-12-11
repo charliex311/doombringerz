@@ -15,10 +15,10 @@
     &-pill{
         border-radius: 100px;
         .progress-bar{
-            @extend .progress-pill;
+            @extend .progress-pill !optional;
         }
     }
-    
+
     &-text{
         display: flex;
         align-items: center;

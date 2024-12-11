@@ -41,7 +41,7 @@
     }
     &-info {
         .tb-odr-item & {
-            @extend .ellipsis;
+            @extend .ellipsis !optional;
         }
     }
     &-action {
@@ -101,7 +101,7 @@
                 text-align: left;
             }
         }
-    } 
+    }
 }
 @media (max-width: 575px){
     .tb-odr {
@@ -135,7 +135,7 @@
         }
         &-amount {
             width: 30%;
-        } 
+        }
         &-total {
             min-width: 100px;
         }

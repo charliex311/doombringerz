@@ -1,5 +1,5 @@
 <div class="header__options">
-    @if(isset(auth()->user()->id))
+    {{-- @if(isset(auth()->user()->id))
         <a href="{{ route('cabinet') }}" class="header__register btn">
             <span>{{ __('Аккаунт') }}</span>
         </a>
@@ -13,5 +13,5 @@
         <a class="header__register btn reg--trigger">
             <span>{{ __('Регистрация') }}</span>
         </a>
-    @endif
+    @endif --}}
 </div>

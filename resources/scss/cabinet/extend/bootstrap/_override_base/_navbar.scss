@@ -34,12 +34,12 @@
 
   .container,
   .container-fluid {
-    @extend %container-flex-properties;
+    @extend %container-flex-properties !optional;
   }
 
   @each $breakpoint, $container-max-width in $container-max-widths {
     > .container#{breakpoint-infix($breakpoint, $container-max-widths)} {
-      @extend %container-flex-properties;
+      @extend %container-flex-properties !optional;
     }
   }
 }
@@ -161,12 +161,12 @@
 
         > .container,
         > .container-fluid {
-          @extend %container-navbar-expand-#{$breakpoint};
+          @extend %container-navbar-expand-#{$breakpoint} !optional;
         }
 
         @each $size, $container-max-width in $container-max-widths {
           > .container#{breakpoint-infix($size, $container-max-widths)} {
-            @extend %container-navbar-expand-#{$breakpoint};
+            @extend %container-navbar-expand-#{$breakpoint} !optional;
           }
         }
       }
@@ -195,12 +195,12 @@
 
         > .container,
         > .container-fluid {
-          @extend %container-nesting-#{$breakpoint};
+          @extend %container-nesting-#{$breakpoint} !optional;
         }
 
         @each $size, $container-max-width in $container-max-widths {
           > .container#{breakpoint-infix($size, $container-max-widths)} {
-            @extend %container-nesting-#{$breakpoint};
+            @extend %container-nesting-#{$breakpoint} !optional;
           }
         }
 

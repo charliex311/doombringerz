@@ -32,12 +32,12 @@
                             <h1 class="home__title main-title">
                                 {!! config('options.main_title_' . app()->getLocale(), '') !!}
                             </h1>
-                            <div class="home__descr">
+                            {{-- <div class="home__descr">
                                 <p>{!! config('options.main_welcome_' . app()->getLocale(), '') !!}</p>
                             </div>
                             <a href="{{ route('login') }}" class="home__play">
                                 <span>{{ __('ИГРАТЬ БЕСПЛАТНО') }}</span>
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
                     <div class="servers">

@@ -6,7 +6,7 @@
 @each $breakpoint in map-keys($container-max-widths) {
     $infix: breakpoint-infix($breakpoint, $container-max-widths);
     .tb-col#{$infix}{
-        @extend .tb-col-hide; 
+        @extend .tb-col-hide !optional;
     }
 }
 
@@ -18,12 +18,12 @@
         }
     }
 }
-@media (min-width: 359px) { 
+@media (min-width: 359px) {
     .tb-col-xs{
         display: table-cell !important;
     }
 }
-@media (min-width: 414px) { 
+@media (min-width: 414px) {
     .tb-col-mb{
         display: table-cell !important;
     }

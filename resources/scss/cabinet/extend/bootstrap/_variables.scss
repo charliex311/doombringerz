@@ -2,6 +2,7 @@
 // Do not remove
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/_mixins";
 
 // Variables
 //
@@ -57,6 +58,31 @@ $theme-colors: map-merge(
   $theme-colors
 );
 
+
+$theme-colors-rgb :    $theme-colors;
+$theme-colors-text:    $theme-colors;
+$theme-colors-bg-subtle:  $theme-colors;
+$theme-colors-border-subtle: $theme-colors;
+$theme-colors-text-dark: $theme-colors;
+$theme-colors-bg-subtle-dark: $theme-colors;
+$theme-colors-border-subtle-dark: $theme-colors;
+$xxxxx: $theme-colors;
+$xxxxx: $theme-colors;
+$xxxxx: $theme-colors;
+$xxxxx: $theme-colors;
+$xxxxx: $theme-colors;
+$xxxxx: $theme-colors;
+$xxxxx: $theme-colors;
+$xxxxx: $theme-colors;
+$xxxxx: $theme-colors;
+$xxxxx: $theme-colors;
+$xxxxx: $theme-colors;
+$xxxxx: $theme-colors;
+$xxxxx: $theme-colors;
+$xxxxx: $theme-colors;
+$xxxxx: $theme-colors;
+$xxxxx: $theme-colors;
+$xxxxx: $theme-colors;
 $component-active-color:      $white;
 $component-active-bg:         theme-color("primary");
 
@@ -331,7 +357,7 @@ $custom-control-indicator-border-width:    $checkbox-radio-switch-border;
 
 $custom-control-indicator-checked-color:            $component-active-color;
 $custom-control-indicator-checked-bg:               $component-active-bg;
-$custom-control-indicator-checked-disabled-bg:      rgba(theme-color("primary"), .8);
+$custom-control-indicator-checked-disabled-bg:      rgba(gray, .8);
 $custom-control-indicator-checked-box-shadow:       none;
 $custom-control-indicator-checked-border-color:     $custom-control-indicator-checked-bg;
 

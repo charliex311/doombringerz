@@ -1,5 +1,5 @@
 $fixed-widths: 80px, 90px, 100px, 110px, 120px, 125px, 130px, 140px, 150px, 175px, 200px, 220px, 225px, 250px, 300px, 350px, 400px, 550px;
-  
+
 @each $size in $fixed-widths {
   .w-#{$size} {
     width: $size !important;
@@ -31,12 +31,12 @@ $pc-widths: 15 15%, 20 20%, 30 30%, 35 35%, 40 40%, 45 45%, 55 55%, 60 60%, 65 6
   }
 }
 
-// width by name 
-$wide-sizes:  
-  xs      520px     576px, 
-  sm      720px     768px, 
-  md      960px     992px, 
-  lg      1140px    1200px, 
+// width by name
+$wide-sizes:
+  xs      520px     576px,
+  sm      720px     768px,
+  md      960px     992px,
+  lg      1140px    1200px,
   xl      1240px    1280px;
 //$name   $wide     $point
 @each $name, $wide, $point in $wide-sizes {
@@ -58,7 +58,7 @@ $wide-sizes:
 }
 
 .wide-xs-fix, .wide-sm-fix, .wide-md-fix, .wide-lg-fix {
- @extend .w-max-100;
+ @extend .w-max-100 !optional;
 }
 @media (min-width: 1200px) and (max-width: 1660px){
   .wide-fit {

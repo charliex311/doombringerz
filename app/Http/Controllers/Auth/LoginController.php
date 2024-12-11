@@ -32,7 +32,7 @@ class LoginController extends Controller
     public function index(Request $request)
     {
         session()->put('sign_action', 1);
-        return redirect()->route('index');
+        return redirect()->route('home');
     }
 
     public function login_2fa(Request $request)

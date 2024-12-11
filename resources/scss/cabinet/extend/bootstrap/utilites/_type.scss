@@ -29,20 +29,20 @@ h5, .h5, h6, .h6 {letter-spacing: -0.01em;}
     text-overflow: ellipsis
 }
 .text-ellipsis{
-    @extend .ellipsis;
+    @extend .ellipsis !optional;
 }
 .ccap{
-    @extend .text-capitalize;
+    @extend .text-capitalize !optional;
 }
 .lcap{
-    @extend .text-lowercase;
+    @extend .text-lowercase !optional;
 }
 .ucap{
-    @extend .text-uppercase;
+    @extend .text-uppercase !optional;
 }
 .ff {
     &-mono {
-        @extend .text-monospace
+        @extend .text-monospac !optionale
     }
     &-base {
         font-family: $base-font-family !important;
@@ -51,26 +51,26 @@ h5, .h5, h6, .h6 {letter-spacing: -0.01em;}
         font-family: $alt-font-family !important;
     }
     &-italic {
-        @extend .font-italic;
+        @extend .font-italic !optional;
     }
 }
 .fw{
     &-light{
-        @extend .font-weight-light;
+        @extend .font-weight-light !optional;
         &er{
-            @extend .font-weight-lighter;
+            @extend .font-weight-lighter !optional;
         }
     }
     &-normal{
-        @extend .font-weight-normal;
+        @extend .font-weight-normal !optional;
     }
     &-medium{
         font-weight: $fw-medium !important;
     }
     &-bold{
-        @extend .font-weight-bold;
+        @extend .font-weight-bold !optional;
         &er{
-            @extend .font-weight-bolder;
+            @extend .font-weight-bolder !optional;
         }
     }
 }

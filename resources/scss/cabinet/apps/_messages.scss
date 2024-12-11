@@ -198,7 +198,7 @@ $msg-body-gap-x-dsk :2.5rem;
         .title{
             font-size: $fx-sz-15;
             margin-bottom: 0.25rem;
-            @extend .ellipsis;
+            @extend .ellipsis !optional;
         }
         p{
             font-size: $fx-sz-13;
@@ -388,7 +388,7 @@ $msg-body-gap-x-dsk :2.5rem;
             }
         }
     }
-    
+
 }
 @include media-breakpoint-between(sm,md){
     .nk-msg{

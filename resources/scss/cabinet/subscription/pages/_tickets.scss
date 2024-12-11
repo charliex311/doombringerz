@@ -42,7 +42,7 @@
 			@if($rtl==true){
 				padding-left: 1rem;
 			}
-			@extend .ellipsis;
+			@extend .ellipsis !optional;
 		}
 	}
 	&-id {
@@ -115,7 +115,7 @@
 				}
 				&.tb-ticket-id {
 					font-size: $fx-sz-14;
-				} 
+				}
 				&.tb-ticket-desc {
 					font-size: $fx-sz-12;
 				}
@@ -266,7 +266,7 @@
 				color: $base-light;
 			}
 			&-list {
-				display: flex; 
+				display: flex;
 				flex-wrap: wrap;
 				margin: -0.375rem;
 				li {

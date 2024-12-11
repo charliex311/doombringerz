@@ -193,7 +193,7 @@ a {
   text-decoration: $link-decoration;
   background-color: transparent; // Remove the gray background on active links in IE 10.
 
-  @include hover() {
+  @mixin hover() {
     color: $link-hover-color;
     text-decoration: $link-hover-decoration;
   }
@@ -208,7 +208,7 @@ a:not([href]) {
   color: inherit;
   text-decoration: none;
 
-  @include hover() {
+  @mixin hover() {
     color: inherit;
     text-decoration: none;
   }
@@ -364,7 +364,7 @@ button,
 }
 
 // Opinionated: add "hand" cursor to non-disabled button elements.
-@if $enable-pointer-cursor-for-buttons {
+@if true {
   button,
   [type="button"],
   [type="reset"],

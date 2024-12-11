@@ -29,7 +29,7 @@
 .link-check{
     padding: .5rem 0;
     + .link-check{
-        @extend .link-bdr-t;
+        @extend .link-bdr-t !optional;
     }
     li{
         display: block;
@@ -50,12 +50,12 @@
             font-size: $fx-sz-13;
             position: relative;
             &:hover{
-                color: $accent-color; 
-                background: $lighter; 
+                color: $accent-color;
+                background: $lighter;
             }
         }
         &.active > a, a.active {
-            @extend .link-act-check;
+            @extend .link-act-check !optional;
         }
     }
 }
@@ -65,7 +65,7 @@
 /////////////////////////////////////
 .link-tidy{
     li + li {
-        @extend .link-bdr-t;
+        @extend .link-bdr-t !optional;
     }
     &.no-bdr {
         padding: .5rem 0;
@@ -83,7 +83,7 @@
     }
     &.sm {
         li {
-            @extend .link-pd-sm;
+            @extend .link-pd-sm !optional;
         }
     }
 }
@@ -94,7 +94,7 @@
 .link-list{
     padding: .75rem 0;
     + .link-list{
-        @extend .link-bdr-t;
+        @extend .link-bdr-t !optional;
     }
     a{
         display: flex;
@@ -120,7 +120,7 @@
 /////////////////////////////////////
 .link-list-opt{
     li + li {
-        @extend .link-bdr-t;
+        @extend .link-bdr-t !optional;
     }
     &.no-bdr {
         padding: .5rem 0;
@@ -142,8 +142,8 @@
         line-height: 1.3rem;
         position: relative;
         &:hover{
-            color: $accent-color; 
-            background: $lighter; 
+            color: $accent-color;
+            background: $lighter;
         }
         .icon{
             font-size: 1.125rem;
@@ -152,7 +152,7 @@
         }
     }
     li.active > a, a.active {
-        @extend .link-act-check;
+        @extend .link-act-check !optional;
     }
     li.disabled > a, a.disabled {
         pointer-events: none;
@@ -236,7 +236,7 @@
 /////////////////////////////////////
 .link-list-plain{
     li + li {
-        @extend .link-bdr-t;
+        @extend .link-bdr-t !optional;
     }
     &.no-bdr {
         padding: .5rem 0;
@@ -253,8 +253,8 @@
         line-height: 1.4rem;
         position: relative;
         &:hover{
-            color: $accent-color; 
-            background: $lighter; 
+            color: $accent-color;
+            background: $lighter;
         }
         .icon{
             font-size: 1.125rem;
@@ -265,7 +265,7 @@
     }
     &.sm{
         a{
-            @extend .link-pd-sm;
+            @extend .link-pd-sm !optional;
         }
     }
 }

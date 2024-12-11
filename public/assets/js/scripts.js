@@ -1,1111 +1,857 @@
-"use strict";
-!function (r, u) {
-    r.Package.name = "DashLite", r.Package.version = "1.4.0";
-    var c = u(window), l = u("body"), d = u(document), t = "nk-menu", f = "nk-header-menu", o = "nk-aside",
-        g = "nk-sidebar", e = "nk-sidebar-mobile", n = "nk-sidebar-fat", i = "nk-sidebar-short",
-        a = "nk-content-sidebar", p = r.Break;
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
 
-    function h(e, n) {
-        return Object.keys(n).forEach(function (t) {
-            e[t] = n[t]
-        }), e
+/***/ "./resources/js/cabinet/scripts.js":
+/*!*****************************************!*\
+  !*** ./resources/js/cabinet/scripts.js ***!
+  \*****************************************/
+/***/ (() => {
+
+!function (NioApp, $) {
+  "use strict";
+
+  NioApp.Package.name = "DashLite";
+  NioApp.Package.version = "2.2";
+  var $win = $(window),
+    $body = $('body'),
+    $doc = $(document),
+    //class names
+    _body_theme = 'nio-theme',
+    _menu = 'nk-menu',
+    _mobile_nav = 'mobile-menu',
+    _header = 'nk-header',
+    _header_menu = 'nk-header-menu',
+    _aside = 'nk-aside',
+    //breakpoints
+    _break = NioApp.Break;
+  function extend(obj, ext) {
+    Object.keys(ext).forEach(function (key) {
+      obj[key] = ext[key];
+    });
+    return obj;
+  }
+  // ClassInit @v1.0
+  NioApp.ClassBody = function () {
+    NioApp.AddInBody(_aside);
+  };
+
+  // ClassInit @v1.0
+  NioApp.ClassNavMenu = function () {
+    NioApp.BreakClass('.' + _header_menu, _break.lg, {
+      timeOut: 0
+    });
+    NioApp.BreakClass('.' + _aside, _break.lg, {
+      timeOut: 0
+    });
+    $win.on('resize', function () {
+      NioApp.BreakClass('.' + _header_menu, _break.lg);
+      NioApp.BreakClass('.' + _aside, _break.lg);
+    });
+  };
+
+  // Code Prettify @v1.0
+  NioApp.Prettify = function () {
+    window.prettyPrint && prettyPrint();
+  };
+
+  // Copied @v1.0
+  NioApp.Copied = function () {
+    var clip = '.clipboard-init',
+      target = '.clipboard-text',
+      sclass = 'clipboard-success',
+      eclass = 'clipboard-error';
+
+    // Feedback
+    function feedback(el, state) {
+      var $elm = $(el),
+        $elp = $elm.parent(),
+        copy = {
+          text: 'Copy',
+          done: 'Copied',
+          fail: 'Failed'
+        },
+        data = {
+          text: $elm.data('clip-text'),
+          done: $elm.data('clip-success'),
+          fail: $elm.data('clip-error')
+        };
+      copy.text = data.text ? data.text : copy.text;
+      copy.done = data.done ? data.done : copy.done;
+      copy.fail = data.fail ? data.fail : copy.fail;
+      var copytext = state === 'success' ? copy.done : copy.fail,
+        addclass = state === 'success' ? sclass : eclass;
+      $elp.addClass(addclass).find(target).html(copytext);
+      setTimeout(function () {
+        $elp.removeClass(sclass + ' ' + eclass).find(target).html(copy.text).blur();
+        $elp.find('input').blur();
+      }, 2000);
     }
 
-    r.ClassBody = function () {
-        r.AddInBody(o), r.AddInBody("nk-apps-sidebar"), r.AddInBody(g), r.AddInBody(n)
-    }, r.ClassNavMenu = function () {
-        r.BreakClass("." + f, p.lg, {timeOut: 0}), r.BreakClass("." + o, p.lg, {timeOut: 0}), r.BreakClass("." + a, p.lg, {timeOut: 0}), r.BreakClass("." + g, p.lg, {
-            timeOut: 0,
-            classAdd: e,
-            ignore: i
-        }), r.BreakClass("." + n, p.xl, {timeOut: 0, classAdd: e}), r.BreakClass("." + i, p.md, {
-            timeOut: 0,
-            classAdd: e
-        }), c.on("resize", function () {
-            r.BreakClass("." + f, p.lg), r.BreakClass("." + o, p.lg), r.BreakClass("." + a, p.lg), r.BreakClass("." + g, p.lg, {
-                classAdd: e,
-                ignore: i
-            }), r.BreakClass("." + n, p.xl, {classAdd: e}), r.BreakClass("." + i, p.md, {classAdd: e})
-        })
-    }, r.Prettify = function () {
-        window.prettyPrint && prettyPrint()
-    }, r.Copied = function () {
-        var t = ".clipboard-init", c = ".clipboard-text", l = "clipboard-success", d = "clipboard-error";
+    // Init ClipboardJS
+    if (ClipboardJS.isSupported()) {
+      var clipboard = new ClipboardJS(clip);
+      clipboard.on('success', function (e) {
+        feedback(e.trigger, 'success');
+        e.clearSelection();
+      }).on('error', function (e) {
+        feedback(e.trigger, 'error');
+      });
+    } else {
+      $(clip).css('display', 'none');
+    }
+    ;
+  };
 
-        function e(t, e) {
-            var n = u(t), i = n.parent(), a = {text: "Copy", done: "Copied", fail: "Failed"},
-                o = {text: n.data("clip-text"), done: n.data("clip-success"), fail: n.data("clip-error")};
-            a.text = o.text ? o.text : a.text, a.done = o.done ? o.done : a.done, a.fail = o.fail ? o.fail : a.fail;
-            var s = "success" === e ? a.done : a.fail, r = "success" === e ? l : d;
-            i.addClass(r).find(c).html(s), setTimeout(function () {
-                i.removeClass(l + " " + d).find(c).html(a.text).blur(), i.find("input").blur()
-            }, 2e3)
-        }
+  // CurrentLink Detect @v1.0
+  // NioApp.CurrentLink = function(){
+  //     var _link = '.nk-menu-link, .menu-link, .nav-link',
+  //         _currentURL = window.location.href,
+  //         fileName = _currentURL.substring(0, (_currentURL.indexOf("#") == -1) ? _currentURL.length : _currentURL.indexOf("#")),
+  //         fileName = fileName.substring(0, (fileName.indexOf("?") == -1) ? fileName.length : fileName.indexOf("?"));
+  //
+  //     $(_link).each(function() {
+  //         var self = $(this), _self_link = self.attr('href');
+  //         if (fileName.match(_self_link)) {
+  //             self.closest("li").addClass('active current-page').parents().closest("li").addClass("active current-page");
+  //             self.closest("li").children('.nk-menu-sub').css('display','block');
+  //             self.parents().closest("li").children('.nk-menu-sub').css('display','block');
+  //         } else {
+  //             self.closest("li").removeClass('active current-page').parents().closest("li:not(.current-page)").removeClass("active");
+  //         }
+  //     });
+  // };
 
-        ClipboardJS.isSupported() ? new ClipboardJS(t).on("success", function (t) {
-            e(t.trigger, "success"), t.clearSelection()
-        }).on("error", function (t) {
-            e(t.trigger, "error")
-        }) : u(t).css("display", "none")
-    }, r.CurrentLink = function () {
-        var t = window.location.href,
-            n = (n = t.substring(0, -1 == t.indexOf("#") ? t.length : t.indexOf("#"))).substring(0, -1 == n.indexOf("?") ? n.length : n.indexOf("?"));
-        u(".nk-menu-link, .menu-link, .nav-link").each(function () {
-            var t = u(this), e = t.attr("href");
-            //n.match(e) ? (t.closest("li").addClass("active_ current-page_").parents().closest("li").addClass("active current-page"), t.closest("li").children(".nk-menu-sub").css("display", "block"), t.parents().closest("li").children(".nk-menu-sub").css("display", "block")) : t.closest("li").removeClass("active current-page").parents().closest("li:not(.current-page)").removeClass("active")
-        })
-    }, r.PassSwitch = function () {
-        r.Passcode(".passcode-switch")
-    }, r.Toast = function (t, e, n) {
-        var i,
-            a = "info" === (e = e || "info") ? "ni ni-info-fill" : "success" === e ? "ni ni-check-circle-fill" : "error" === e ? "ni ni-cross-circle-fill" : "warning" === e ? "ni ni-alert-fill" : "",
-            o = {position: "bottom-right", ui: "", icon: "auto", clear: !1}, s = n ? h(o, n) : o;
-        if (s.position = s.position ? "toast-" + s.position : "toast-bottom-right", s.icon = "auto" === s.icon ? a : s.icon ? s.icon : "", s.ui = s.ui ? " " + s.ui : "", i = "" !== s.icon ? '<span class="toastr-icon"><em class="icon ' + s.icon + '"></em></span>' : "", "" !== (t = "" !== t ? i + '<div class="toastr-text">' + t + "</div>" : "")) {
-            !0 === s.clear && toastr.clear();
-            var r = {
-                closeButton: !0,
-                debug: !1,
-                newestOnTop: !1,
-                progressBar: !1,
-                positionClass: s.position + s.ui,
-                closeHtml: '<span class="btn-trigger">Close</span>',
-                preventDuplicates: !0,
-                showDuration: "1500",
-                hideDuration: "1500",
-                timeOut: "2000",
-                toastClass: "toastr",
-                extendedTimeOut: "3000"
-            };
-            toastr.options = h(r, s), toastr[e](t)
+  // PasswordSwitch @v1.0
+  NioApp.PassSwitch = function () {
+    NioApp.Passcode('.passcode-switch');
+  };
+
+  // Toastr Message @v1.0
+  NioApp.Toast = function (msg, ttype, opt) {
+    var ttype = ttype ? ttype : 'info',
+      msi = '',
+      ticon = ttype === 'info' ? 'ni ni-info-fill' : ttype === 'success' ? 'ni ni-check-circle-fill' : ttype === 'error' ? 'ni ni-cross-circle-fill' : ttype === 'warning' ? 'ni ni-alert-fill' : '',
+      def = {
+        position: 'bottom-right',
+        ui: '',
+        icon: 'auto',
+        clear: false
+      },
+      attr = opt ? extend(def, opt) : def;
+    attr.position = attr.position ? 'toast-' + attr.position : 'toast-bottom-right';
+    attr.icon = attr.icon === 'auto' ? ticon : attr.icon ? attr.icon : '';
+    attr.ui = attr.ui ? ' ' + attr.ui : '';
+    msi = attr.icon !== '' ? '<span class="toastr-icon"><em class="icon ' + attr.icon + '"></em></span>' : '', msg = msg !== '' ? msi + '<div class="toastr-text">' + msg + '</div>' : '';
+    if (msg !== "") {
+      if (attr.clear === true) {
+        toastr.clear();
+      }
+      var option = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": attr.position + attr.ui,
+        "closeHtml": '<span class="btn-trigger">Close</span>',
+        "preventDuplicates": true,
+        "showDuration": "1500",
+        "hideDuration": "1500",
+        "timeOut": "2000",
+        "toastClass": "toastr",
+        "extendedTimeOut": "3000"
+      };
+      toastr.options = extend(option, attr);
+      toastr[ttype](msg);
+    }
+  };
+
+  // Toggle Screen @v1.0
+  NioApp.TGL.screen = function (elm) {
+    if ($(elm).exists()) {
+      $(elm).each(function () {
+        var ssize = $(this).data('toggle-screen');
+        if (ssize) {
+          $(this).addClass('toggle-screen-' + ssize);
         }
-    }, r.TGL.screen = function (t) {
-        u(t).exists() && u(t).each(function () {
-            var t = u(this).data("toggle-screen");
-            t && u(this).addClass("toggle-screen-" + t)
-        })
-    }, r.TGL.content = function (t, e) {
-        var n = u(t || ".toggle"), i = u("[data-content]"), a = !1,
-            o = {active: "active", content: "content-active", break: !0}, s = e ? h(o, e) : o;
-        r.TGL.screen(i), n.on("click", function (t) {
-            a = this, r.Toggle.trigger(u(this).data("target"), s), t.preventDefault()
-        }), d.on("mouseup", function (t) {
-            if (a) {
-                var e = u(a);
-                e.is(t.target) || 0 !== e.has(t.target).length || i.is(t.target) || 0 !== i.has(t.target).length || (r.Toggle.removed(e.data("target"), s), a = !1)
+      });
+    }
+  };
+
+  // Toggle Content @v1.0
+  NioApp.TGL.content = function (elm, opt) {
+    var toggle = elm ? elm : '.toggle',
+      $toggle = $(toggle),
+      $contentD = $('[data-content]'),
+      toggleBreak = true,
+      toggleCurrent = false,
+      def = {
+        active: 'active',
+        content: 'content-active',
+        "break": toggleBreak
+      },
+      attr = opt ? extend(def, opt) : def;
+    NioApp.TGL.screen($contentD);
+    $toggle.on('click', function (e) {
+      toggleCurrent = this;
+      NioApp.Toggle.trigger($(this).data('target'), attr);
+      e.preventDefault();
+    });
+    $doc.on('mouseup', function (e) {
+      if (toggleCurrent) {
+        var $toggleCurrent = $(toggleCurrent);
+        if (!$toggleCurrent.is(e.target) && $toggleCurrent.has(e.target).length === 0 && !$contentD.is(e.target) && $contentD.has(e.target).length === 0) {
+          NioApp.Toggle.removed($toggleCurrent.data('target'), attr);
+          toggleCurrent = false;
+        }
+      }
+    });
+    $win.on('resize', function () {
+      $contentD.each(function () {
+        var content = $(this).data('content'),
+          ssize = $(this).data('toggle-screen'),
+          toggleBreak = _break[ssize];
+        if (NioApp.Win.width > toggleBreak) {
+          NioApp.Toggle.removed(content, attr);
+        }
+      });
+    });
+  };
+
+  // ToggleExpand @v1.0
+  NioApp.TGL.expand = function (elm, opt) {
+    var toggle = elm ? elm : '.expand',
+      def = {
+        toggle: true
+      },
+      attr = opt ? extend(def, opt) : def;
+    $(toggle).on('click', function (e) {
+      NioApp.Toggle.trigger($(this).data('target'), attr);
+      e.preventDefault();
+    });
+  };
+
+  // Dropdown Menu @v1.0
+  NioApp.TGL.ddmenu = function (elm, opt) {
+    var imenu = elm ? elm : '.nk-menu-toggle',
+      def = {
+        active: 'active',
+        self: 'nk-menu-toggle',
+        child: 'nk-menu-sub'
+      },
+      attr = opt ? extend(def, opt) : def;
+    $(imenu).on('click', function (e) {
+      if (NioApp.Win.width < _break.lg || $(this).parents().hasClass(_aside)) {
+        NioApp.Toggle.dropMenu($(this), attr);
+      }
+      e.preventDefault();
+    });
+  };
+
+  // Show Menu @v1.0
+  NioApp.TGL.showmenu = function (elm, opt) {
+    var toggle = elm ? elm : '.nk-nav-toggle',
+      $toggle = $(toggle),
+      $contentD = $('[data-content]'),
+      toggleBreak = $contentD.hasClass(_header_menu) ? _break.lg : _break.xl,
+      toggleOlay = _header + '-overlay',
+      toggleClose = {
+        profile: true,
+        menu: false
+      },
+      def = {
+        active: 'toggle-active',
+        content: _header + '-active',
+        body: 'nav-shown',
+        overlay: toggleOlay,
+        "break": toggleBreak,
+        close: toggleClose
+      },
+      attr = opt ? extend(def, opt) : def;
+    $toggle.on('click', function (e) {
+      NioApp.Toggle.trigger($(this).data('target'), attr);
+      e.preventDefault();
+    });
+    $doc.on('mouseup', function (e) {
+      if (!$toggle.is(e.target) && $toggle.has(e.target).length === 0 && !$contentD.is(e.target) && $contentD.has(e.target).length === 0 && NioApp.Win.width < toggleBreak) {
+        NioApp.Toggle.removed($toggle.data('target'), attr);
+      }
+    });
+    $win.on('resize', function () {
+      if (NioApp.Win.width < _break.xl || NioApp.Win.width < toggleBreak) {
+        NioApp.Toggle.removed($toggle.data('target'), attr);
+      }
+    });
+  };
+
+  // Animate FormSearch @v1.0
+  NioApp.Ani.formSearch = function (elm, opt) {
+    var def = {
+        active: 'active',
+        timeout: 400,
+        target: '[data-search]'
+      },
+      attr = opt ? extend(def, opt) : def;
+    var $elem = $(elm),
+      $target = $(attr.target);
+    if ($elem.exists()) {
+      $elem.on('click', function (e) {
+        e.preventDefault();
+        var $self = $(this),
+          the_target = $self.data('target'),
+          $self_st = $('[data-search=' + the_target + ']'),
+          $self_tg = $('[data-target=' + the_target + ']');
+        if (!$self_st.hasClass(attr.active)) {
+          $self_tg.add($self_st).addClass(attr.active);
+          $self_st.find('input').focus();
+        } else {
+          $self_tg.add($self_st).removeClass(attr.active);
+          setTimeout(function () {
+            $self_st.find('input').val('');
+          }, attr.timeout);
+        }
+      });
+      $doc.on({
+        keyup: function keyup(e) {
+          if (e.key === "Escape") {
+            $elem.add($target).removeClass(attr.active);
+          }
+        },
+        mouseup: function mouseup(e) {
+          if (!$target.find('input').val() && !$target.is(e.target) && $target.has(e.target).length === 0 && !$elem.is(e.target) && $elem.has(e.target).length === 0) {
+            $elem.add($target).removeClass(attr.active);
+          }
+        }
+      });
+    }
+  };
+
+  // Animate FormElement @v1.0
+  NioApp.Ani.formElm = function (elm, opt) {
+    var def = {
+        focus: 'focused'
+      },
+      attr = opt ? extend(def, opt) : def;
+    if ($(elm).exists()) {
+      $(elm).each(function () {
+        var $self = $(this);
+        if ($self.val()) {
+          $self.parent().addClass(attr.focus);
+        }
+        $self.on({
+          focus: function focus() {
+            $self.parent().addClass(attr.focus);
+          },
+          blur: function blur() {
+            if (!$self.val()) {
+              $self.parent().removeClass(attr.focus);
             }
-        }), c.on("resize", function () {
-            i.each(function () {
-                var t = u(this).data("content"), e = u(this).data("toggle-screen"), n = p[e];
-                r.Win.width > n && r.Toggle.removed(t, s)
-            })
-        })
-    }, r.TGL.expand = function (t, e) {
-        var n = t || ".expand", i = {toggle: !0}, a = e ? h(i, e) : i;
-        u(n).on("click", function (t) {
-            r.Toggle.trigger(u(this).data("target"), a), t.preventDefault()
-        })
-    }, r.TGL.ddmenu = function (t, e) {
-        var n = t || ".nk-menu-toggle", i = {active: "active", self: "nk-menu-toggle", child: "nk-menu-sub"},
-            a = e ? h(i, e) : i;
-        u(n).on("click", function (t) {
-            (r.Win.width < p.lg || u(this).parents().hasClass(g) || u(this).parents().hasClass(o)) && r.Toggle.dropMenu(u(this), a), t.preventDefault()
-        })
-    }, r.TGL.showmenu = function (t, e) {
-        var n = u(t || ".nk-nav-toggle"), i = u("[data-content]"),
-            a = l.hasClass("short-nav") || i.hasClass(f) ? p.lg : p.xl, o = {
-                active: "toggle-active",
-                content: g + "-active",
-                body: "nav-shown",
-                overlay: "nk-sidebar-overlay",
-                break: a,
-                close: {profile: !0, menu: !1}
-            }, s = e ? h(o, e) : o;
-        n.on("click", function (t) {
-            r.Toggle.trigger(u(this).data("target"), s), t.preventDefault()
-        }), d.on("mouseup", function (t) {
-            !n.is(t.target) && 0 === n.has(t.target).length && !i.is(t.target) && 0 === i.has(t.target).length && r.Win.width < a && r.Toggle.removed(n.data("target"), s)
-        }), c.on("resize", function () {
-            (r.Win.width < p.xl || r.Win.width < a) && r.Toggle.removed(n.data("target"), s)
-        })
-    }, r.Ani.formSearch = function (t, e) {
-        var n = {active: "active", timeout: 400, target: "[data-search]"}, a = e ? h(n, e) : n, i = u(t),
-            o = u(a.target);
-        i.exists() && (i.on("click", function (t) {
-            t.preventDefault();
-            var e = u(this).data("target"), n = u("[data-search=" + e + "]"), i = u("[data-target=" + e + "]");
-            n.hasClass(a.active) ? (i.add(n).removeClass(a.active), setTimeout(function () {
-                n.find("input").val("")
-            }, a.timeout)) : (i.add(n).addClass(a.active), n.find("input").focus())
-        }), d.on({
-            keyup: function (t) {
-                "Escape" === t.key && i.add(o).removeClass(a.active)
-            }, mouseup: function (t) {
-                o.find("input").val() || o.is(t.target) || 0 !== o.has(t.target).length || i.is(t.target) || 0 !== i.has(t.target).length || i.add(o).removeClass(a.active)
+          }
+        });
+      });
+    }
+  };
+
+  // Form Validate @v1.0
+  NioApp.Validate = function (elm, opt) {
+    if ($(elm).exists()) {
+      $(elm).each(function () {
+        var def = {
+            errorElement: "span"
+          },
+          attr = opt ? extend(def, opt) : def;
+        $(this).validate(attr);
+      });
+    }
+  };
+  NioApp.Validate.init = function () {
+    NioApp.Validate('.form-validate', {
+      errorElement: "span",
+      errorClass: "invalid",
+      errorPlacement: function errorPlacement(error, element) {
+        error.appendTo(element.parent());
+      }
+    });
+  };
+
+  // Dropzone @v1.0
+  NioApp.Dropzone = function (elm, opt) {
+    if ($(elm).exists()) {
+      $(elm).each(function () {
+        var def = {
+            autoDiscover: false
+          },
+          attr = opt ? extend(def, opt) : def;
+        $(this).addClass('dropzone').dropzone(attr);
+      });
+    }
+  };
+
+  // Wizard @v1.0
+  NioApp.Wizard = function () {
+    var $wizard = $(".nk-wizard").show();
+    $wizard.steps({
+      headerTag: ".nk-wizard-head",
+      bodyTag: ".nk-wizard-content",
+      labels: {
+        finish: "Submit",
+        next: "Next",
+        previous: "Prev",
+        loading: "Loading ..."
+      },
+      onStepChanging: function onStepChanging(event, currentIndex, newIndex) {
+        // Allways allow previous action even if the current form is not valid!
+        if (currentIndex > newIndex) {
+          return true;
+        }
+        // Needed in some cases if the user went back (clean up)
+        if (currentIndex < newIndex) {
+          // To remove error styles
+          $wizard.find(".body:eq(" + newIndex + ") label.error").remove();
+          $wizard.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+        }
+        $wizard.validate().settings.ignore = ":disabled,:hidden";
+        return $wizard.valid();
+      },
+      onFinishing: function onFinishing(event, currentIndex) {
+        $wizard.validate().settings.ignore = ":disabled";
+        return $wizard.valid();
+      },
+      onFinished: function onFinished(event, currentIndex) {
+        window.location.href = "#";
+      }
+    }).validate({
+      errorElement: "span",
+      errorClass: "invalid",
+      errorPlacement: function errorPlacement(error, element) {
+        error.appendTo(element.parent());
+      }
+    });
+  };
+
+  // DataTable @1.1
+  NioApp.DataTable = function (elm, opt) {
+    if ($(elm).exists()) {
+      $(elm).each(function () {
+        var auto_responsive = $(this).data('auto-responsive');
+        var dom_normal = '<"row justify-between g-2"<"col-7 col-sm-6 text-left"f><"col-5 col-sm-6 text-right"<"datatable-filter"l>>><"datatable-wrap my-3"t><"row align-items-center"<"col-7 col-sm-12 col-md-9"p><"col-5 col-sm-12 col-md-3 text-left text-md-right"i>>';
+        var dom_separate = '<"row justify-between g-2"<"col-7 col-sm-6 text-left"f><"col-5 col-sm-6 text-right"<"datatable-filter"l>>><"my-3"t><"row align-items-center"<"col-7 col-sm-12 col-md-9"p><"col-5 col-sm-12 col-md-3 text-left text-md-right"i>>';
+        var dom = $(this).hasClass('is-separate') ? dom_separate : dom_normal;
+        var def = {
+            responsive: true,
+            autoWidth: false,
+            dom: dom,
+            language: {
+              search: "",
+              searchPlaceholder: "Type in to Search",
+              lengthMenu: "<span class='d-none d-sm-inline-block'>Show</span><div class='form-control-select'> _MENU_ </div>",
+              info: "_START_ -_END_ of _TOTAL_",
+              infoEmpty: "No records found",
+              infoFiltered: "( Total _MAX_  )",
+              paginate: {
+                "first": "First",
+                "last": "Last",
+                "next": "Next",
+                "previous": "Prev"
+              }
             }
-        }))
-    }, r.Ani.formElm = function (t, e) {
-        var n = {focus: "focused"}, i = e ? h(n, e) : n;
-        u(t).exists() && u(t).each(function () {
-            var t = u(this);
-            t.val() && t.parent().addClass(i.focus), t.on({
-                focus: function () {
-                    t.parent().addClass(i.focus)
-                }, blur: function () {
-                    t.val() || t.parent().removeClass(i.focus)
-                }
-            })
-        })
-    }, r.Validate = function (t, n) {
-        u(t).exists() && u(t).each(function () {
-            var t = {errorElement: "span"}, e = n ? h(t, n) : t;
-            u(this).validate(e)
-        })
-    }, r.Validate.init = function () {
-        r.Validate(".form-validate", {
-            errorElement: "span", errorClass: "invalid", errorPlacement: function (t, e) {
-                t.appendTo(e.parent())
+          },
+          attr = opt ? extend(def, opt) : def;
+        attr = auto_responsive === false ? extend(attr, {
+          responsive: false
+        }) : attr;
+        $(this).DataTable(attr);
+      });
+    }
+  };
+
+  // BootStrap Extended
+  NioApp.BS.ddfix = function (elm, exc) {
+    var dd = elm ? elm : '.dropdown-menu',
+      ex = exc ? exc : 'a:not(.clickable), button:not(.clickable), a:not(.clickable) *, button:not(.clickable) *';
+    $(dd).on('click', function (e) {
+      if (!$(e.target).is(ex)) {
+        e.stopPropagation();
+        return;
+      }
+    });
+    if (NioApp.State.isRTL) {
+      var $dMenu = $('.dropdown-menu');
+      $dMenu.each(function () {
+        var $self = $(this);
+        if ($self.hasClass('dropdown-menu-right') && !$self.hasClass('dropdown-menu-center')) {
+          $self.prev('[data-toggle="dropdown"]').dropdown({
+            popperConfig: {
+              placement: 'bottom-start'
             }
-        })
-    }, r.Dropzone = function (t, n) {
-        u(t).exists() && u(t).each(function () {
-            var t = {autoDiscover: !1}, e = n ? h(t, n) : t;
-            u(this).addClass("dropzone").dropzone(e)
-        })
-    }, r.DataTable = function (t, i) {
-        u(t).exists() && u(t).each(function () {
-            var t = u(this).data("auto-responsive"), e = {
-                responsive: !0,
-                autoWidth: !1,
-                dom: '<"row justify-between g-2"<"col-7 col-sm-6 text-left"f><"col-5 col-sm-6 text-right"<"datatable-filter"l>>><"datatable-wrap my-3"t><"row align-items-center"<"col-7 col-sm-12 col-md-9"p><"col-5 col-sm-12 col-md-3 text-left text-md-right"i>>',
-                language: {
-                    search: "",
-                    searchPlaceholder: "Type in to Search",
-                    lengthMenu: "<span class='d-none d-sm-inline-block'>Show</span><div class='form-control-select'> _MENU_ </div>",
-                    info: "_START_ -_END_ of _TOTAL_",
-                    infoEmpty: "No records found",
-                    infoFiltered: "( Total _MAX_  )",
-                    paginate: {first: "First", last: "Last", next: "Next", previous: "Prev"}
-                }
-            }, n = i ? h(e, i) : e;
-            n = !1 === t ? h(n, {responsive: !1}) : n, u(this).DataTable(n)
-        })
-    }, r.BS.ddfix = function (t, e) {
-        var n = e || "a:not(.clickable), button:not(.clickable), a:not(.clickable) *, button:not(.clickable) *";
-        u(t || ".dropdown-menu").on("click", function (t) {
-            u(t.target).is(n) || t.stopPropagation()
-        })
-    }, r.BS.tabfix = function (t) {
-        u(t || '[data-toggle="modal"]').on("click", function () {
-            var t = u(this), e = t.data("target"), n = t.attr("href"), i = t.data("tab-target"),
-                a = e ? l.find(e) : l.find(n);
-            if (i && "#" !== i && a) a.find('[href="' + i + '"]').tab("show"); else if (a) {
-                var o = a.find(".nk-nav.nav-tabs"), s = u(o[0]).find('[data-toggle="tab"]');
-                u(s[0]).tab("show")
+          });
+        } else if (!$self.hasClass('dropdown-menu-right') && !$self.hasClass('dropdown-menu-center')) {
+          $self.prev('[data-toggle="dropdown"]').dropdown({
+            popperConfig: {
+              placement: 'bottom-end'
             }
-        })
-    }, r.Knob.init = function () {
-        var t = {readOnly: !0, lineCap: "round"}, e = {angleOffset: -90, angleArc: 180, readOnly: !0, lineCap: "round"};
-        r.Knob(".knob", t), r.Knob(".knob-half", e)
-    }, r.Range.init = function () {
-        r.Range(".form-range-slider")
-    }, r.Select2.init = function () {
-        r.Select2(".form-select")
-    }, r.Slider.init = function () {
-        r.Slick(".slider-init")
-    }, r.Dropzone.init = function () {
-        r.Dropzone(".upload-zone", {url: "/images"})
-    }, r.DataTable.init = function () {
-        r.DataTable(".datatable-init", {responsive: {details: !0}}), u.fn.DataTable.ext.pager.numbers_length = 7
-    }, r.OtherInit = function () {
-        r.ClassBody(), r.PassSwitch(), r.CurrentLink(), r.LinkOff(".is-disable"), r.ClassNavMenu()
-    }, r.Ani.init = function () {
-        r.Ani.formElm(".form-control-animate"), r.Ani.formSearch(".toggle-search")
-    }, r.BS.init = function () {
-        r.BS.menutip("a.nk-menu-link"), r.BS.tooltip(".nk-tooltip"), r.BS.tooltip(".btn-tooltip", {placement: "top"}), r.BS.tooltip('[data-toggle="tooltip"]'), r.BS.tooltip(".tipinfo,.nk-menu-tooltip", {placement: "right"}), r.BS.popover('[data-toggle="popover"]'), r.BS.progress("[data-progress]"), r.BS.fileinput(".custom-file-input"), r.BS.modalfix(), r.BS.ddfix(), r.BS.tabfix()
-    }, r.Picker.init = function () {
-        r.Picker.date(".date-picker"), r.Picker.dob(".date-picker-alt"), r.Picker.time(".time-picker")
-    }, r.Addons.Init = function () {
-        r.Knob.init(), r.Range.init(), r.Select2.init(), r.Dropzone.init(), r.Slider.init(), r.DataTable.init()
-    }, r.TGL.init = function () {
-        r.TGL.content(".toggle"), r.TGL.expand(".toggle-expand"), r.TGL.expand(".toggle-opt", {toggle: !1}), r.TGL.showmenu(".nk-nav-toggle"), r.TGL.ddmenu("." + t + "-toggle", {
-            self: t + "-toggle",
-            child: t + "-sub"
-        })
-    }, r.BS.modalOnInit = function () {
-        u(".modal").on("shown.bs.modal", function () {
-            r.Select2.init(), r.Validate.init()
-        })
-    }, r.init = function () {
-        r.coms.docReady.push(r.OtherInit), r.coms.docReady.push(r.Prettify), r.coms.docReady.push(r.ColorBG), r.coms.docReady.push(r.ColorTXT), r.coms.docReady.push(r.Copied), r.coms.docReady.push(r.Ani.init), r.coms.docReady.push(r.TGL.init), r.coms.docReady.push(r.BS.init), r.coms.docReady.push(r.Validate.init), r.coms.docReady.push(r.Picker.init), r.coms.docReady.push(r.Addons.Init)
-    }, r.init()
+          });
+        }
+      });
+    }
+  };
+
+  // BootStrap Specific Tab Open
+  NioApp.BS.tabfix = function (elm) {
+    var tab = elm ? elm : '[data-toggle="modal"]';
+    $(tab).on('click', function () {
+      var _this = $(this),
+        target = _this.data('target'),
+        target_href = _this.attr('href'),
+        tg_tab = _this.data('tab-target');
+      var modal = target ? $body.find(target) : $body.find(target_href);
+      if (tg_tab && tg_tab !== '#' && modal) {
+        modal.find('[href="' + tg_tab + '"]').tab('show');
+      } else if (modal) {
+        var tabdef = modal.find('.nk-nav.nav-tabs');
+        var link = $(tabdef[0]).find('[data-toggle="tab"]');
+        $(link[0]).tab('show');
+      }
+    });
+  };
+
+  // Dark Mode Switch @since v2.0
+  NioApp.ModeSwitch = function () {
+    var toggle = $('.dark-switch');
+    if ($body.hasClass('dark-mode')) {
+      toggle.addClass('active');
+    } else {
+      toggle.removeClass('active');
+    }
+    toggle.on('click', function (e) {
+      e.preventDefault();
+      $(this).toggleClass('active');
+      $body.toggleClass('dark-mode');
+    });
+  };
+
+  // Knob @v1.0
+  NioApp.Knob.init = function () {
+    var knob = {
+      "default": {
+        readOnly: true,
+        lineCap: "round"
+      },
+      half: {
+        angleOffset: -90,
+        angleArc: 180,
+        readOnly: true,
+        lineCap: "round"
+      }
+    };
+    NioApp.Knob('.knob', knob["default"]);
+    NioApp.Knob('.knob-half', knob.half);
+  };
+
+  // Range @v1.0
+  NioApp.Range.init = function () {
+    NioApp.Range('.form-range-slider');
+  };
+  NioApp.Select2.init = function () {
+    // NioApp.Select2('.select');
+    NioApp.Select2('.form-select');
+  };
+
+  // Slick Init @v1.0
+  NioApp.Slider.init = function () {
+    NioApp.Slick('.slider-init');
+  };
+
+  // Dropzone Init @v1.0
+  NioApp.Dropzone.init = function () {
+    NioApp.Dropzone('.upload-zone', {
+      url: "/images"
+    });
+  };
+
+  // DataTable Init @v1.0
+  NioApp.DataTable.init = function () {
+    NioApp.DataTable('.datatable-init', {
+      responsive: {
+        details: true
+      }
+    });
+    $.fn.DataTable.ext.pager.numbers_length = 7;
+  };
+
+  // Extra @v1.1
+  NioApp.OtherInit = function () {
+    NioApp.ClassBody();
+    NioApp.PassSwitch();
+    // NioApp.CurrentLink();
+    NioApp.LinkOff('.is-disable');
+    NioApp.ClassNavMenu();
+    //v1.5
+    NioApp.SetHW('[data-height]', 'height');
+    NioApp.SetHW('[data-width]', 'width');
+  };
+
+  // Animate Init @v1.0
+  NioApp.Ani.init = function () {
+    NioApp.Ani.formElm('.form-control-outlined');
+    NioApp.Ani.formSearch('.toggle-search');
+  };
+
+  // BootstrapExtend Init @v1.0
+  NioApp.BS.init = function () {
+    NioApp.BS.menutip('a.nk-menu-link');
+    NioApp.BS.tooltip('.nk-tooltip');
+    NioApp.BS.tooltip('.btn-tooltip', {
+      placement: 'top'
+    });
+    NioApp.BS.tooltip('[data-toggle="tooltip"]');
+    NioApp.BS.tooltip('.tipinfo,.nk-menu-tooltip', {
+      placement: 'right'
+    });
+    NioApp.BS.popover('[data-toggle="popover"]');
+    NioApp.BS.progress('[data-progress]');
+    NioApp.BS.fileinput('.custom-file-input');
+    NioApp.BS.modalfix();
+    NioApp.BS.ddfix();
+    NioApp.BS.tabfix();
+  };
+
+  // Picker Init @v1.0
+  NioApp.Picker.init = function () {
+    NioApp.Picker.date('.date-picker');
+    NioApp.Picker.dob('.date-picker-alt');
+    NioApp.Picker.time('.time-picker');
+  };
+
+  // Addons @v1
+  NioApp.Addons.Init = function () {
+    NioApp.Knob.init();
+    NioApp.Range.init();
+    NioApp.Select2.init();
+    NioApp.Dropzone.init();
+    NioApp.Slider.init();
+    NioApp.DataTable.init();
+  };
+
+  // Toggler @v1
+  NioApp.TGL.init = function () {
+    NioApp.TGL.content('.toggle');
+    NioApp.TGL.expand('.toggle-expand');
+    NioApp.TGL.expand('.toggle-opt', {
+      toggle: false
+    });
+    NioApp.TGL.showmenu('.nk-nav-toggle');
+    NioApp.TGL.ddmenu('.' + _menu + '-toggle', {
+      self: _menu + '-toggle',
+      child: _menu + '-sub'
+    });
+  };
+  NioApp.BS.modalOnInit = function () {
+    $('.modal').on('shown.bs.modal', function () {
+      NioApp.Select2.init();
+      NioApp.Validate.init();
+    });
+  };
+
+  // Initial by default
+  /////////////////////////////
+  NioApp.init = function () {
+    NioApp.coms.docReady.push(NioApp.OtherInit);
+    NioApp.coms.docReady.push(NioApp.Prettify);
+    NioApp.coms.docReady.push(NioApp.ColorBG);
+    NioApp.coms.docReady.push(NioApp.ColorTXT);
+    NioApp.coms.docReady.push(NioApp.Copied);
+    NioApp.coms.docReady.push(NioApp.Ani.init);
+    NioApp.coms.docReady.push(NioApp.TGL.init);
+    NioApp.coms.docReady.push(NioApp.BS.init);
+    NioApp.coms.docReady.push(NioApp.Validate.init);
+    NioApp.coms.docReady.push(NioApp.Picker.init);
+    NioApp.coms.docReady.push(NioApp.Addons.Init);
+    NioApp.coms.docReady.push(NioApp.Wizard);
+    NioApp.coms.winLoad.push(NioApp.ModeSwitch);
+  };
+  NioApp.init();
+  return NioApp;
 }(NioApp, jQuery);
-
-
-function openTab(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+document.addEventListener("DOMContentLoaded", function () {
+  checkWebP('lossy', function (feature, isSupported) {
+    if (!isSupported) {
+      document.documentElement.classList.add("no-webp");
     }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab2(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent2");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks2");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab3(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent3");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks3");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab4(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent4");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks4");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab5(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent5");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks5");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab6(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent6");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks6");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab7(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent7");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks7");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
+  });
+});
+function checkWebP(feature, callback) {
+  var kTestImages = {
+    lossy: "UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA",
+    lossless: "UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==",
+    alpha: "UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==",
+    animation: "UklGRlIAAABXRUJQVlA4WAoAAAASAAAAAAAAAAAAQU5JTQYAAAD/////AABBTk1GJgAAAAAAAAAAAAAAAAAAAGQAAABWUDhMDQAAAC8AAAAQBxAREYiI/gcA"
+  };
+  var img = new Image();
+  img.onload = function () {
+    var result = img.width > 0 && img.height > 0;
+    callback(feature, result);
+  };
+  img.onerror = function () {
+    callback(feature, false);
+  };
+  img.src = "data:image/webp;base64," + kTestImages[feature];
 }
 
-
-
-function openTab_bitem_1_1_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_1_1_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_1_1_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_1_2_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_1_2_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_1_2_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_1_3_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_1_3_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_1_3_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_1_4_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_1_4_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_1_4_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_1_5_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_1_5_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_1_5_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_1_6_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_1_6_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_1_6_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
-function openTab_bitem_2_1_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_2_1_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_2_1_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_2_2_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_2_2_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_2_2_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_2_3_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_2_3_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_2_3_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_2_4_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_2_4_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_2_4_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_2_5_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_2_5_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_2_5_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_2_6_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_2_6_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_2_6_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
-function openTab_bitem_3_1_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_3_1_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_3_1_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_3_2_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_3_2_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_3_2_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_3_3_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_3_3_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_3_3_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_3_4_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_3_4_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_3_4_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_3_5_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_3_5_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_3_5_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_3_6_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_3_6_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_3_6_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
-function openTab_bitem_4_1_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_4_1_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_4_1_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_4_2_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_4_2_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_4_2_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_4_3_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_4_3_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_4_3_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_4_4_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_4_4_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_4_4_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_4_5_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_4_5_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_4_5_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_4_6_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_4_6_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_4_6_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
-function openTab_bitem_5_1_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_5_1_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_5_1_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_5_2_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_5_2_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_5_2_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_5_3_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_5_3_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_5_3_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_5_4_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_5_4_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_5_4_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_5_5_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_5_5_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_5_5_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_5_6_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_5_6_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_5_6_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
-function openTab_bitem_6_1_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_6_1_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_6_1_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_6_2_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_6_2_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_6_2_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_6_3_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_6_3_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_6_3_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_6_4_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_6_4_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_6_4_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_6_5_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_6_5_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_6_5_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-function openTab_bitem_6_6_(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent_bitem_6_6_");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks_bitem_6_6_");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
+/***/ }),
+
+/***/ "./resources/scss/cabinet/dashlite.scss":
+/*!**********************************************!*\
+  !*** ./resources/scss/cabinet/dashlite.scss ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	(() => {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var [chunkIds, fn, priority] = deferred[i];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"/assets/js/scripts": 0,
+/******/ 			"assets/css/cabinet": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	__webpack_require__.O(undefined, ["assets/css/cabinet"], () => (__webpack_require__("./resources/js/cabinet/scripts.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["assets/css/cabinet"], () => (__webpack_require__("./resources/scss/cabinet/dashlite.scss")))
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
+/******/ })()
+;

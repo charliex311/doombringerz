@@ -107,8 +107,8 @@
 }
 .header__navigation nav {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    /* justify-content: space-between;
+    align-items: center; */
 }
 .header__navigation ul {
     display: flex;
