@@ -16,7 +16,7 @@
                                         <span class="nk-menu-text">{{ __('Пользователи') }}</span>
                                         <span class="nk-menu-badge">{{ users_count() }}</span>
                                     </a>
-                                    <ul class="nk-menu-sub" style="display: none;">
+                                    <ul class="nk-menu-sub" style="">
                                         <li class="nk-menu-item {{ is_active('users') }}">
                                             <a href="{{ route('users') }}" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text">{{ __('Список пользователей') }}</span></a>
                                         </li>
@@ -33,7 +33,7 @@
                                             <span class="nk-menu-text">{{ __('Пожертвования') }}</span>
                                             <span class="nk-menu-badge"></span>
                                         </a>
-                                        <ul class="nk-menu-sub" style="display: none;">
+                                        <ul class="nk-menu-sub" style="">
                                             <li class="nk-menu-item {{ is_active('settings.donat') }}">
                                                 <a href="{{ route('settings.donat') }}" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text">{{ __('Настройки пожертвований') }}</span></a>
                                             </li>
@@ -50,7 +50,7 @@
                                             <span class="nk-menu-text">{{ __('Магазин') }}</span>
                                             <span class="nk-menu-badge">{{ shopitems_count() }}</span>
                                         </a>
-                                        <ul class="nk-menu-sub" style="display: none;">
+                                        <ul class="nk-menu-sub" style="">
                                             <li class="nk-menu-item {{ is_active('shopitems.index') }}">
                                                 <a href="{{ route('shopitems.index') }}" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text">{{ __('Каталог') }}</span></a>
                                             </li>
@@ -68,7 +68,7 @@
                                             <span class="nk-menu-text">{{ __('Торговая площадка') }}</span>
                                             <span class="nk-menu-badge">{{ marketitems_count() }}</span>
                                         </a>
-                                        <ul class="nk-menu-sub" style="display: none;">
+                                        <ul class="nk-menu-sub" style="">
                                             <li class="nk-menu-item {{ is_active('marketitems.index') }}">
                                                 <a href="{{ route('marketitems.index') }}" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text">{{ __('Каталог') }}</span></a>
                                             </li>
@@ -90,7 +90,7 @@
                                                 <span class="nk-menu-badge">{{ referrals_count() }}</span>
                                             </a>
                                             <!-- .nk-menu-sub -->
-                                            <ul class="nk-menu-sub" style="display: none;">
+                                            <ul class="nk-menu-sub" style="">
                                                 <li class="nk-menu-item {{ is_active('referrals.index') }}">
                                                     <a href="{{ route('referrals.index') }}" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text">{{ __('Список рефералов') }}</span></a>
                                                 </li>
@@ -108,7 +108,7 @@
                                                 <span class="nk-menu-badge">{{ referrals_count() }}</span>
                                             </a>
                                             <!-- .nk-menu-sub -->
-                                            <ul class="nk-menu-sub" style="display: none;">
+                                            <ul class="nk-menu-sub" style="">
                                                 <li class="nk-menu-item {{ is_active('promocodes.index') }}">
                                                     <a href="{{ route('promocodes.index') }}" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text">{{ __('Список промокодов') }}</span></a>
                                                 </li>
@@ -187,7 +187,7 @@
                                             <span class="nk-menu-text">{{ __('Баг трекер') }}</span>
                                             <span class="nk-menu-badge">{{ reports_count() }}</span>
                                         </a>
-                                        <ul class="nk-menu-sub" style="display: none;">
+                                        <ul class="nk-menu-sub">
                                             <li class="nk-menu-item {{ is_active('reports.all') }}">
                                                 <a href="{{ route('reports.all') }}" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text">{{ __('Список сообщений') }}</span></a>
                                             </li>
@@ -225,7 +225,7 @@
                                                 <span class="nk-menu-text">{{ __('Логин и регистрация') }}</span>
                                                 <span class="nk-menu-badge"></span>
                                             </a>
-                                            <ul class="nk-menu-sub" style="display: none;">
+                                            <ul class="nk-menu-sub">
                                                 <li class="nk-menu-item {{ is_active('settings.login') }}">
                                                     <a href="{{ route('settings.login') }}" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text">{{ __('Настройки') }}</span></a>
                                                 </li>
@@ -245,12 +245,12 @@
                                                 <span class="nk-menu-icon"><em class="icon ni ni-link"></em></span>
                                                 <span class="nk-menu-text">{{ __('Настройки') }} APIs</span>
                                             </a>
-                                            <ul class="nk-menu-sub" style="display: none;">
+                                            <ul class="nk-menu-sub">
                                                 <li class="nk-menu-item {{ is_active('settings.discord_api') }}">
                                                     <a href="{{ route('settings.discord_api') }}" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text">Discord API</span></a>
                                                 </li>
                                             </ul>
-                                            <ul class="nk-menu-sub" style="display: none;">
+                                            <ul class="nk-menu-sub">
                                                 <li class="nk-menu-item {{ is_active('settings.google_api') }}">
                                                     <a href="{{ route('settings.google_api') }}" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text">Google API</span></a>
                                                 </li>
@@ -269,7 +269,7 @@
                                             <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
                                             <span class="nk-menu-text">{{ __('Настройки сайта') }}</span>
                                         </a>
-                                        <ul class="nk-menu-sub" style="display: none;">
+                                        <ul class="nk-menu-sub">
                                             <li class="nk-menu-item {{ is_active('settings.project_name') }}">
                                                 <a href="{{ route('settings.project_name') }}" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text">{{ __('Название проекта') }}</span></a>
                                             </li>
@@ -351,7 +351,7 @@
                                             <span class="nk-menu-text">{{ __('Частые вопросы') }}</span>
                                             <span class="nk-menu-badge">{{ faqs_count() }}</span>
                                         </a>
-                                        <ul class="nk-menu-sub" style="display: none;">
+                                        <ul class="nk-menu-sub">
                                             <li class="nk-menu-item {{ is_active('faqs.index') }}">
                                                 <a href="{{ route('faqs.index') }}" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text">{{ __('Список вопросов') }}</span></a>
                                             </li>
@@ -386,7 +386,7 @@
                                             <span class="nk-menu-text">{{ __('Стримы') }}</span>
                                             <span class="nk-menu-badge">{{ streams_count() }}</span>
                                         </a>
-                                        <ul class="nk-menu-sub" style="display: none;">
+                                        <ul class="nk-menu-sub">
                                             <li class="nk-menu-item {{ is_active('streams.index') }}">
                                                 <a href="{{ route('streams.index') }}" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text">{{ __('Управление') }}</span></a>
                                             </li>

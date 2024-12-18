@@ -1,9 +1,12 @@
 <section class="features">
     <div class="features__container main-container">
         <div class="features__body">
-            <h4 class="features__title section-title">
+            <h4 class="features__title section-title dark:text-gray-50">
                 {{ __('Особенности проекта') }}
             </h4>
+
+            <div class="line-heading"></div>
+
             <div class="features__inner swiper">
                 <ul class="features__row swiper-wrapper">
 
@@ -17,7 +20,7 @@
                             <img src="{{ $feature->image_url }}" alt="features-card">
                         </div>
                         <div class="features__info">
-                            <div class="features__card-name">
+                            <div class="features__card-name dark:text-gray-50">
                                 {{ $feature->$title }}
                             </div>
                             <div class="features__descr">

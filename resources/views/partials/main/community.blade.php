@@ -3,7 +3,7 @@
         <div class="community__body">
             <div class="community__inner">
                 <div class="community__info">
-                    <h3 class="community__title">
+                    <h3 class="community__title dark:text-gray-50">
                         {{ __('Присоединяйтесь к сообществу!') }}
                     </h3>
                     <div class="community__descr">
@@ -13,7 +13,7 @@
                         </p>
                     </div>
                 </div>
-                <a href="{{ config('options.discord_link', '#') }}" target="_blank" class="community__invite btn">
+                <a href="{{ config('options.discord_link', 'https://discord.gg/QmrmHpEmnm') }}" target="_blank" class="community__invite btn ">
                     <span>{{ __('Присоединиться к Дискорд') }}</span>
                 </a>
             </div>

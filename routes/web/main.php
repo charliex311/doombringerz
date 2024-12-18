@@ -62,3 +62,19 @@ Route::post('/password/sms', [ResetPasswordController::class, 'sms'])->name('pas
 Route::get('/download', [\App\Http\Controllers\DownloadController::class, 'registrationData'])->name('download.registrationData');
 
 Route::get('/ref/{ref}', [\App\Http\Controllers\ReferralController::class, 'setRefSession'])->name('referrals.set');
+
+Route::get('track', function () {
+    return view('pages.main.track');
+})->name("track");
+
+Route::get('contact', function () {
+    return view('pages.main.contact');
+})->name("contact");
+
+Route::get('digi-goods', function () {
+    return view('pages.main.digi-goods');
+})->name("digi-goods");
+
+Route::get('merchandise', function () {
+    return view('pages.main.merchandise');
+})->name("merchandise");

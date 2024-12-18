@@ -1,4 +1,4 @@
-<div class="menu">
+<div class="menu dark:bg-gray-800 flex flex-col h-full">
     <div class="menu__container">
         <div class="menu__close"></div>
         <div class="menu__inner">
@@ -25,10 +25,15 @@
                 <button class="header__login btn login--trigger">
                     <span>{{ __('Войти') }}</span>
                 </button>
-                <a class="header__register btn reg--trigger">
+                <a class="header__register btn reg--trigger mt-4">
                     <span>{{ __('Регистрация') }}</span>
                 </a>
             @endif
         </div>
+    </div>
+
+
+    <div class="mt-auto flex py-4 px-2 justify-end">
+        @include('partials.main.header-dark-mode-toggle')
     </div>
 </div>

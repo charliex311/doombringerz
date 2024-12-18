@@ -1,4 +1,4 @@
-<div class="langs-tmp" style="position: absolute;z-index: 5;top: 20px;left: 0;">
+<div class="langs-tmpx ml-auto">
     <div class="lang-container">
         <img src="/img/globe-icon.svg" width="24px" alt="globe-icon">
         <div class="languages" style="margin-left: 18px;">

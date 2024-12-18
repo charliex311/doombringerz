@@ -23712,7 +23712,7 @@ body.nav-shown {
   padding-bottom: 0.25rem;
 }
 .nk-menu-toggle + .nk-menu-sub {
-  display: none;
+  /* display: none; */
 }
 .active > .nk-menu-sub {
   display: block;

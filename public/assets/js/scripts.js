@@ -699,10 +699,10 @@ function checkWebP(feature, callback) {
 
 /***/ }),
 
-/***/ "./resources/scss/cabinet/dashlite.scss":
-/*!**********************************************!*\
-  !*** ./resources/scss/cabinet/dashlite.scss ***!
-  \**********************************************/
+/***/ "./resources/scss/app.css":
+/*!********************************!*\
+  !*** ./resources/scss/app.css ***!
+  \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -799,7 +799,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/assets/js/scripts": 0,
-/******/ 			"assets/css/cabinet": 0
+/******/ 			"css/app": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -849,8 +849,8 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["assets/css/cabinet"], () => (__webpack_require__("./resources/js/cabinet/scripts.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["assets/css/cabinet"], () => (__webpack_require__("./resources/scss/cabinet/dashlite.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/cabinet/scripts.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/scss/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

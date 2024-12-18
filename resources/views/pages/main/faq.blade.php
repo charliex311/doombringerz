@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <div class="news-page__inner">
+            <div class="news-page__inner dark:bg-gray-800">
                 <div class="news-page__wrapper">
                     <div class="news-page__article">
                         <div class="news-page__info">

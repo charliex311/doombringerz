@@ -16,7 +16,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #a02819; /* цвет полосы прокрутки */
+    background-color: #0270D2; /* цвет полосы прокрутки */
     border-radius: 5px; /* скругление углов */
 }
 
@@ -139,7 +139,7 @@
 .lang-container:hover .languages {
     opacity: 1;
     visibility: visible;
-    transform: translateX(54px);
+    transform: translateX(-54px);
     pointer-events: all;
 }
 @media only screen and (max-width: 576px) {
@@ -250,7 +250,7 @@
 }
 
 .header__login:hover, .header__navigation ul li a:hover, .header__navigation ul li span:hover, .home__descr p {
-    color: #f63f29;
+    color: #88beec;
 }
 
 .modal__terms.reg-disclaimer{
@@ -462,7 +462,7 @@
 }
 .home__title,
 .offer__title {
-    text-shadow: 2px 2px 1px #000;
+    /* text-shadow: 2px 2px 1px #8a8a8a; */
 }
 .home__descr p {
     text-shadow: 0.5px 0.5px 0 #000;

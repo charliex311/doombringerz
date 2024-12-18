@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header dark:!bg-gray-800">
     <div class="header__container main-container">
         <div class="header__row">
 

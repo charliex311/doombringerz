@@ -20,7 +20,7 @@
     --news-card-heading: hsla(228, 3%, 68%, 1);
     --comm-block-fade: linear-gradient(90.04deg, #161A19 0.04%, rgba(22, 26, 25, 0) 58.61%);
     --bg-features-card: hsla(169, 7%, 9%, 1);
-    --bg-btn: linear-gradient(360deg, #51140C 0%, #9B2818 4.69%, #E93D25 4.7%, #B11414 95.77%, #DB3A24 95.83%, #E24523 99.81%);
+    --bg-btn: linear-gradient(360deg,  #004964 0%,  #005c7e 4.69%,  #009ed8 4.7%,  #00678d 95.77%,  #006386 95.83%,  #00aae7 99.81%);
     --bg-hover-btn: linear-gradient(360deg, #51140C 0%, #9B2818 4.69%, #792419 4.7%, #8e1b1b 95.77%, #802b20 95.83%, #831d06 99.81%);
     --clr-light-400: hsla(0, 0%, 100%, 1);
     --clr-light-300: hsla(228, 3%, 68%, 1);

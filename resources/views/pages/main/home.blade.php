@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', config('options.main_title_'.app()->getLocale(), '') )
+@section('title', config('options.main_title_' . app()->getLocale(), ''))
 
 @section('content')
 
@@ -13,6 +13,9 @@
         </div>
 
         <section class="home">
+            <div
+                class="absolute w-full bottom-0 left-0 h-full z-[10] bg-gradient-to-t from-white dark:from-gray-800 transition duration-300">
+            </div>
             <div class="home__video">
                 <video autoplay="" loop="" muted="">
                     <source src="/img/bg_header.mp4" type="video/mp4">
@@ -23,30 +26,37 @@
                 <div class="home__container main-container">
                     <div class="home__body">
                         <a href="/" class="home__logo">
-                            <picture>
-                                <source type="image/webp" srcset="/img/home/main-logo.webp">
-                                <img src="/img/home/main-logo.png" alt="home-logo">
+                            <picture class="hidden dark:block">
+                                <source type="image/png" srcset="/img/logo-light.png">
+                                <img src="/img/logo-light.png" alt="logo" class="object-contain h-16 hidden dark:block">
+                            </picture>
+
+                            <picture class="dark:hidden">
+                                <source type="image/png" srcset="/img/logo-dark.png">
+                                <img src="/img/logo-dark.png" alt="logo" class="object-contain h-16 dark:hidden">
                             </picture>
                         </a>
                         <div class="home__info">
-                            <h1 class="home__title main-title">
+                            <h1 class="home__title main-title dark:text-gray-50">
                                 {!! config('options.main_title_' . app()->getLocale(), '') !!}
                             </h1>
-                            {{-- <div class="home__descr">
+                            <div class="home__descr dark:text-gray-50">
                                 <p>{!! config('options.main_welcome_' . app()->getLocale(), '') !!}</p>
                             </div>
-                            <a href="{{ route('login') }}" class="home__play">
-                                <span>{{ __('ИГРАТЬ БЕСПЛАТНО') }}</span>
-                            </a> --}}
+                            <a href="/about" class="btn dark:text-gray-50">
+                                <span>About us</span>
+                            </a>
                         </div>
                     </div>
                     <div class="servers">
                         <ul class="servers__row">
 
-                            @foreach(getservers() as $server)
-                                <li class="servers__row-item servers__row-item_{{ strtolower(server_status($server->id)) }}">
+                            @foreach (getservers() as $server)
+                                <li
+                                    class="servers__row-item servers__row-item_{{ strtolower(server_status($server->id)) }}">
                                     <div class="servers__row-icon">
-                                        <img src="/img/servers/server-{{ strtolower(server_status($server->id)) }}-icon.png" alt="server-{{ strtolower(server_status($server->id)) }}-icon">
+                                        <img src="/img/servers/server-{{ strtolower(server_status($server->id)) }}-icon.png"
+                                            alt="server-{{ strtolower(server_status($server->id)) }}-icon">
                                     </div>
                                     <div class="servers__info">
                                         <div class="servers__name">
@@ -88,11 +98,11 @@
                             </li>
                             --}}
 
-                            <div class="servers__row-item servers__row-item_about">
+                            {{-- <div class="servers__row-item servers__row-item_about">
                                 <a href="{{ route('about_servers') }}" class="servers__btn btn">
                                     <span>{{ __('О Серверах') }}</span>
                                 </a>
-                            </div>
+                            </div> --}}
                         </ul>
                     </div>
                 </div>

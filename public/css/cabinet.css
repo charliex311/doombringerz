@@ -27288,7 +27288,7 @@ body.nav-shown {
 }
 
 .nk-menu-toggle + .nk-menu-sub {
-    display: none
+    /* display: none */
 }
 
 .active > .nk-menu-sub {

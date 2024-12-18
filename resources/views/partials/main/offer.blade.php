@@ -1,13 +1,13 @@
-<section class="offer">
-    <div class="offer__video home__video">
+<section class="offer bg-bg-offer dark:bg-bg-offer-dark">
+    {{-- <div class="offer__video home__video">
         <video autoplay="" loop="" muted="">
             <source src="/img/bg_offer.mp4" type="video/mp4">
             <source src="/img/bg_offer.webm" type="video/webm">
         </video>
-    </div>
+    </div> --}}
     <div class="offer__container main-container">
         <div class="offer__body">
-            <h5 class="offer__title main-title">
+            <h5 class="offer__title main-title dark:text-gray-50">
                 {{ __('Ваше путешествие начинается здесь') }}
             </h5>
             <div class="offer__info">
@@ -15,16 +15,11 @@
                     {{ __('Испытайте постоянно расширяющуюся фантазию World of Warcraft БЕСПЛАТНО уже сегодня.') }}
                 </div>
 
-                @if(auth()->check())
-                    <a href="{{ route('cabinet') }}" class="offer__create-acc">
-                        <span>{{ __('ИГРАТЬ СЕЙЧАС') }}</span>
+                <a href="https://www.youtube.com/@Doombringerz/videos" class="btn">
+                        <span>Checkout my videos</span>
                     </a>
-                @else
-                    <a href="{{ route('login') }}" class="offer__create-acc">
-                        <span>{{ __('ЗАВЕСТИ АККАУНТ') }}</span>
-                    </a>
-                @endif
             </div>
         </div>
+
     </div>
 </section>

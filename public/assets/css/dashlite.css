@@ -9666,7 +9666,7 @@ body.nav-shown { overflow: hidden; }
 
 .nk-menu-sub { padding-bottom: .25rem; }
 
-.nk-menu-toggle + .nk-menu-sub { display: none; }
+.nk-menu-toggle + .nk-menu-sub {  }
 
 .active > .nk-menu-sub { display: block; }
 
