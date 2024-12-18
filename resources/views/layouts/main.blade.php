@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" x-data="{ darkMode: localStorage.getItem('dark') === 'true' }" x-init="$watch('darkMode', val => localStorage.setItem('dark', val))" x-bind:class="{ 'dark': darkMode }">
+<html lang="{{ app()->getLocale() }}" x-data="{ darkMode: localStorage.getItem('dark') ? (localStorage.getItem('dark') === 'true') : true }" x-init="(() => { !localStorage.getItem('dark') ? localStorage.setItem('dark', true) : ''}), $watch('darkMode', val => localStorage.setItem('dark', val))" x-bind:class="{ 'dark': darkMode }">
 
 <head>
     <meta charset="utf-8">

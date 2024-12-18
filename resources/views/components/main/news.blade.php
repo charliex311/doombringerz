@@ -7,7 +7,7 @@
 
             <div class="line-heading"></div>
 
-            <div class="mb-6 text-lg">Announcements and updates on game servers, merchandise drops, and any
+            <div class="mb-6 text-lg dark:text-gray-50">Announcements and updates on game servers, merchandise drops, and any
                 major news from Doombringerz. Behind-the-scenes content, Q&A with Doombringerz, etc.</div>
 
             <ul class="news__row">
